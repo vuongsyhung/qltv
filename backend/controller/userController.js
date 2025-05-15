@@ -59,6 +59,10 @@ router.post("/register", async (req, res) => {
     await newUser.save();
     res.status(201).json({ message: "Đăng ký người dùng thành công", user: newUser });
   } catch (error) {
+    if (error.code === 11000) {
+      // Handle duplicate key error
+      return res.status(400).json({ message: "Email đã tồn tại" });
+    }
     console.error("Lỗi đăng ký:", error);
     res.status(500).json({ message: "Lỗi máy chủ nội bộ", error: error.message });
   }

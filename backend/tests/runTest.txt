@@ -1,0 +1,14 @@
+chạy từng filefile
+
+npm test -- tests/getUsers.test.js
+npm test -- tests/register.test.js
+npm test -- tests/putUser.test.js
+npm test -- tests/deleteUser.test.js
+npm test -- tests/login.test.js
+npm test -- tests/logout.test.js
+npm test -- tests/resetPassword.test.js
+
+chạy toàn bộ
+
+npm test
+

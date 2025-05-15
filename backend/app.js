@@ -4,6 +4,7 @@ const userController = require("./controller/userController");
 const loginController = require("./controller/loginController");
 const app = express();
 const PORT = process.env.PORT || 3000;
+const router = express.Router();
 const cors = require('cors');
 
 // Middleware
@@ -23,3 +24,5 @@ app.use("/api", loginController);
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
+
+module.exports = app; 

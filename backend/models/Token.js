@@ -1,10 +1,9 @@
 const mongoose = require("mongoose");
 
-mongoose.connect('mongodb+srv://sydungvuong:Giganzero5@cluster0.cdtnpuj.mongodb.net/LibraryBooks', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-}).then(() => console.log("MongoDB connected"))
-.catch((err) => console.error("MongoDB connection error:", err));
+mongoose.connect('mongodb+srv://sydungvuong:Giganzero5@cluster0.cdtnpuj.mongodb.net/LibraryBooks')
+  .then(() => console.log("MongoDB connected"))
+  .catch((err) => console.error("MongoDB connection error:", err));
+
 
 // JWT Tokens Schema
 const jwtTokenSchema = new mongoose.Schema({

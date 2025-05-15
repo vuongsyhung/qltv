@@ -1,8 +1,7 @@
 const mongoose = require("mongoose");
 
 mongoose.connect('mongodb+srv://sydungvuong:Giganzero5@cluster0.cdtnpuj.mongodb.net/LibraryBooks', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
+  
 }).then(() => console.log("MongoDB connected"))
 .catch((err) => console.error("MongoDB connection error:", err));
 
@@ -27,6 +26,10 @@ const refreshTokenSchema = new mongoose.Schema({
 
 const jwt_tokens = mongoose.model("jwt_tokens", jwtTokenSchema);
 const refresh_tokens = mongoose.model("refresh_tokens", refreshTokenSchema);
+const mongoose = require("mongoose");
 
+afterAll(async () => {
+  await mongoose.connection.close();
+});
 
 module.exports = { jwt_tokens, refresh_tokens }; 

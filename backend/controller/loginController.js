@@ -4,13 +4,19 @@ const { jwt_tokens, refresh_tokens } = require("../models/Token");
 const User = require("../models/User");
 const express = require("express");
 const router = express.Router();
+const authenticateToken = require("../middleware/checktoken"); 
+
 
 router.post("/login", async (req, res) => {
   try {
     const { email, password_hash } = req.body;
     // Tìm user theo email
+    if (!email || !password_hash) {
+      return res.status(400).json({ message: "Email and password are required" });
+    }
+
     const user = await User.findOne({ email });
-    // Kiểm tra user và mật khẩu
+
     if (!user || !user.password_hash || !(await bcrypt.compare(password_hash, user.password_hash))) {
       return res.status(400).json({ message: "Invalid credentials" });
     }
@@ -50,7 +56,6 @@ router.post("/login", async (req, res) => {
     res.status(500).json({ message: "Internal server error", error: error.message });
   }
 });
-
 
 
 
@@ -137,6 +142,36 @@ router.post("/resetpassword", async (req, res) => {
     res.status(500).json({ message: "Internal server error", error: error.message });
   }
 });
+
+
+router.post("/logout", authenticateToken, async (req, res) => {
+  try {
+    // Lấy token từ header Authorization
+    const token = req.headers.authorization?.split(" ")[1];
+
+    // Kiểm tra token có tồn tại không
+    if (!token) {
+      return res.status(401).json({ message: "Token is required" });
+    }
+
+    // Tìm token trong database
+    const tokenRecord = await jwt_tokens.findOne({ token });
+
+    if (!tokenRecord) {
+      return res.status(404).json({ message: "Token not found" });
+    }
+
+    // Đánh dấu token là revoked
+    tokenRecord.status = "revoked";
+    await tokenRecord.save();
+
+    return res.status(200).json({ message: "Logout successful" });
+  } catch (error) {
+    console.error("Logout error:", error);
+    return res.status(500).json({ message: "Internal server error", error: error.message });
+  }
+});
+
 
 
 module.exports = router;
