@@ -1,0 +1,8 @@
+/* Toastify custom styles */custom-toast-success {
+    background-color: #d4edda !important;
+    color: #155724 !important;
+}
+
+.custom-toast-error {
+    background-color: #FFF2F2 !important;
+    color: #721c24 !important; }

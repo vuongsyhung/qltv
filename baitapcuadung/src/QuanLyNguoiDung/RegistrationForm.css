@@ -1,0 +1,88 @@
+/* Form container */
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    background-color: white;
+    flex-direction: column;
+}
+
+/* Form */
+.form {
+    width: 20%;
+    height: 55vh;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 2px solid #007bff;
+}
+
+/* Form title */
+.form-title {
+    text-align: center;
+    margin-bottom: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #007bff;
+}
+
+/* Input group */
+.input-group {
+    margin-bottom: 5px;
+}
+
+/* Label */
+.label {
+    display: block;
+    margin-bottom: 3px;
+    font-weight: bold;
+    font-size: 12px;
+    color: #003366;
+}
+
+/* Input and select */
+.input,
+.select {
+    width: 100%;
+    padding: 5px;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 12px;
+    box-sizing: border-box;
+    color: #003366;
+}
+
+/* Button */
+.button {
+    width: 30%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 12px;
+    cursor: pointer;
+    margin-left: auto;
+    display: block;
+    text-align: center;
+}
+
+.button:hover {
+    background-color: #0056b3;
+}
+
+.cancel-button {
+    background-color: #f44336;
+    /* Màu đỏ cho nút Hủy */
+    color: white;
+    border: none; } 
+
+        .button-group {
+            display: flex;
+            justify-content: flex-end;
+            /* Căn nút về phía bên phải */
+            gap: 2px;
+            /* Khoảng cách giữa các nút */     
+        }   
