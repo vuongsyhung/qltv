@@ -63,9 +63,10 @@ const LoginForm = () => {
         <form onSubmit={handleSubmit} className="loginform">
           <div className="loginform-title">Đăng Nhập</div>
           <div className="input-group">
-            <label className="label">Email:</label>
+            <label htmlFor="email" className="label">Email:</label>
             <input
               type="email"
+              id="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
@@ -73,9 +74,10 @@ const LoginForm = () => {
             />
           </div>
           <div className="input-group">
-            <label className="label">Mật khẩu:</label>
+            <label htmlFor="password" className="label">Mật khẩu:</label>
             <input
               type="password"
+              id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required

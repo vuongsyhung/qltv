@@ -142,6 +142,7 @@ const ListUsers = () => {
                 {editingUserId === user.user_id ? (
                   <input
                     type="text"
+                    data-testid={`user_id_${user.user_id}`}  // Thêm data-testid
                     value={editedUser.user_id}
                     onChange={(e) => handleInputChange(e, "user_id")}
                   />
@@ -153,6 +154,7 @@ const ListUsers = () => {
                 {editingUserId === user.user_id ? (
                   <input
                     type="text"
+                    data-testid={`name_${user.user_id}`}  // Thêm data-testid
                     value={editedUser.name}
                     onChange={(e) => handleInputChange(e, "name")}
                   />
@@ -164,6 +166,7 @@ const ListUsers = () => {
                 {editingUserId === user.user_id ? (
                   <input
                     type="email"
+                    data-testid={`email_${user.user_id}`}  // Thêm data-testid
                     value={editedUser.email}
                     onChange={(e) => handleInputChange(e, "email")}
                   />
@@ -175,6 +178,7 @@ const ListUsers = () => {
                 {editingUserId === user.user_id ? (
                   <input
                     type="text"
+                    data-testid={`role_${user.user_id}`}  // Thêm data-testid
                     value={editedUser.role}
                     onChange={(e) => handleInputChange(e, "role")}
                   />
@@ -187,6 +191,7 @@ const ListUsers = () => {
                 {editingUserId === user.user_id ? (
                   <input
                     type="text"
+                    data-testid={`status_${user.user_id}`}  // Thêm data-testid
                     value={editedUser.status}
                     onChange={(e) => handleInputChange(e, "status")}
                   />
@@ -195,46 +200,58 @@ const ListUsers = () => {
                 )}
               </td>
               <td>
-                  {editingUserId === user.user_id ? (
-                    <textarea
-                      value={JSON.stringify(editedUser.extra_info || {}, null, 2)} // Hiển thị JSON đẹp
-                      onChange={(e) => {
-                        try {
-                          const parsedValue = JSON.parse(e.target.value); // Kiểm tra JSON hợp lệ
-                          handleInputChange({ target: { value: parsedValue } }, "extra_info");
-                        } catch (error) {
-                          console.error("Invalid JSON format:", error);
-                          toast.error("Thông tin thêm phải ở định dạng JSON hợp lệ.", {
-                            className: "custom-toast-error",
-                          });
-                        }
-                      }}
-                    />
-                      ) : user.extra_info && Object.keys(user.extra_info).length > 0 ? (
-                        Object.entries(user.extra_info).map(([key, value]) => (
-                          <p key={key}>{`${key}: ${value}`}</p> // Hiển thị từng cặp key-value
-                        ))
-                      ) : (
-                        "Không có dữ liệu" // Hiển thị khi extra_info trống
-                      )}
-             </td>
+                {editingUserId === user.user_id ? (
+                  <textarea
+                    data-testid={`extra_info_${user.user_id}`}  // Thêm data-testid
+                    value={JSON.stringify(editedUser.extra_info || {}, null, 2)} // Hiển thị JSON đẹp
+                    onChange={(e) => {
+                      try {
+                        const parsedValue = JSON.parse(e.target.value); // Kiểm tra JSON hợp lệ
+                        handleInputChange({ target: { value: parsedValue } }, "extra_info");
+                      } catch (error) {
+                        console.error("Invalid JSON format:", error);
+                        toast.error("Thông tin thêm phải ở định dạng JSON hợp lệ.", {
+                          className: "custom-toast-error",
+                        });
+                      }
+                    }}
+                  />
+                ) : user.extra_info && Object.keys(user.extra_info).length > 0 ? (
+                  Object.entries(user.extra_info).map(([key, value]) => (
+                    <p key={key}>{`${key}: ${value}`}</p> // Hiển thị từng cặp key-value
+                  ))
+                ) : (
+                  "Không có dữ liệu" // Hiển thị khi extra_info trống
+                )}
+              </td>
               <td>
                 {editingUserId === user.user_id ? (
                   <>
-                    <button onClick={handleUpdate} style={{ marginRight: "10px" }}>
+                    <button
+                      data-testid="save-button"  // Thêm data-testid cho nút Lưu
+                      onClick={handleUpdate}
+                      style={{ marginRight: "10px" }}
+                    >
                       Lưu
                     </button>
-                    <button onClick={() => setEditingUserId(null)}>Hủy</button>
+                    <button
+                      data-testid="cancel-button"  // Thêm data-testid cho nút Hủy
+                      onClick={() => setEditingUserId(null)}
+                    >
+                      Hủy
+                    </button>
                   </>
                 ) : (
                   <>
                     <button
+                      data-testid="edit-button"  // Thêm data-testid cho nút Sửa
                       onClick={() => handleEdit(user)}
                       style={{ marginRight: "10px" }}
                     >
                       Sửa
                     </button>
                     <button
+                      data-testid="delete-button"  // Thêm data-testid cho nút Xóa
                       onClick={() => handleDelete(user.user_id)}
                       style={{ backgroundColor: "red", color: "white" }}
                     >

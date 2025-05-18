@@ -51,8 +51,9 @@ const ResetPasswordForm = () => {
       <form onSubmit={handleSubmit} className="resetform">
         <div className="formtitle">Thay Đổi Mật Khẩu</div>
         <div>
-          <label>Email:</label>
+          <label htmlFor="reset-email">Email:</label>
           <input
+            id="reset-email"
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -60,8 +61,9 @@ const ResetPasswordForm = () => {
           />
         </div>
         <div>
-          <label>Mật khẩu mới:</label>
+          <label htmlFor="new-password">Mật khẩu mới:</label>
           <input
+            id="new-password"
             type="password"
             value={newPassword}
             onChange={(e) => setNewPassword(e.target.value)}
